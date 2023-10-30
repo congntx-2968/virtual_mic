@@ -39,14 +39,11 @@ signals:
 public slots:
     void initController();
     void modelInitProgress(float percentage);
-//    void onSourceDataArrived(const std::vector<int16_t>& data);
-//    void onOutputDataArrived(const char* data, int nbytes);
 
 private slots:
     void updateSourcePlot(const std::vector<int16_t>& data);
     void updateOutputPlot(const char* data, int nbytes);
     void playButtonClicked();
-//    void updatePlots();
 
 private:
     std::string m_EncoderPath = "weights\\encoder.pt";
@@ -68,11 +65,6 @@ private:
     Controller *m_controller = nullptr;
 
     bool checkFileExist(const QString filePath);
-//    QMutex source_plot_mutex;
-//    QMutex output_plot_mutex;
-//    std::vector<int16_t> sourceDataBuffer;
-//    std::vector<int16_t> outputDataBuffer;
 
-//    QTimer *plot_timer;
 };
 #endif // MAINWINDOW_H

@@ -55,16 +55,6 @@ torch::Tensor to_tensor(const std::vector<T> &data, const std::vector<int64_t> &
 VITSWhisperV2::VITSWhisperV2(const std::string &encoder_path, const std::string &decoder_path)
 {
     init_model(encoder_path, decoder_path);
-    // timespec beg, end;
-    // std::cout << "Warim up model for 10 times: " << std::endl;
-    // for (int i = 0; i < 10; ++i){
-    //     clock_gettime(CLOCK_MONOTONIC, &beg);
-    //     warmup();
-    //     clock_gettime(CLOCK_MONOTONIC, &end);
-
-    //     uint64_t ns = (end.tv_sec - beg.tv_sec) * 1e9 + (end.tv_nsec - beg.tv_nsec);
-    //     std::cout << i + 1<< ": " << ns / 1e6 << "ms" << std::endl;
-    // }
 }
 
 VITSWhisperV2::VITSWhisperV2(std::istream &encoder_stream, std::istream &decoder_stream)
@@ -106,7 +96,6 @@ void VITSWhisperV2::init_model(std::istream &encoder_stream, std::istream &decod
         this->encoder.eval();
         this->decoder = torch::jit::load(decoder_stream);
         this->decoder.eval();
-        // std::cout << model.dump_to_str(true, false, false) << std::endl;
 
         vad_options default_option;
         vad.set_options(default_option);
@@ -120,25 +109,6 @@ void VITSWhisperV2::init_model(std::istream &encoder_stream, std::istream &decod
         return;
     }
 }
-
-// void VITSWhisperV2::warmup()
-// {
-//     // torch::Tensor x = torch::rand(SEGMENT_SIZE) * 2 - 1;
-//     // auto rs = model.forward({x}).toTensor().contiguous().to(c10::Device("cpu"));
-
-//     timespec beg, end;
-//     std::cout << "Warim up model for 10 times: " << std::endl;
-//     for (int i = 0; i < 10; ++i){
-//         clock_gettime(CLOCK_MONOTONIC, &beg);
-
-//         torch::Tensor x = torch::rand(SEGMENT_SIZE) * 2 - 1;
-//         auto rs = model.forward({x}).toTensor().contiguous().to(c10::Device("cpu"));
-
-//         clock_gettime(CLOCK_MONOTONIC, &end);
-//         uint64_t ns = (end.tv_sec - beg.tv_sec) * 1e9 + (end.tv_nsec - beg.tv_nsec);
-//         std::cout << i + 1<< ": " << ns / 1e6 << "ms" << std::endl;
-//     }
-// }
 
 std::vector<float> VITSWhisperV2::inference(const std::vector<float> &x)
 {
