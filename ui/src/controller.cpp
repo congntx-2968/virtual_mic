@@ -296,8 +296,6 @@ std::vector<int16_t> Controller::process(const std::vector<int16_t>& audioData){
         output = resampleAudio(data, 16000, 24000);
     }else{
         uint64_t beg = time_ns();
-//        std::vector<float> data_copy(data.size());
-//        std::copy(data.cbegin(), data.cend(), data_copy.begin());
 
         output = model->inference(data);
 

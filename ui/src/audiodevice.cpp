@@ -30,11 +30,6 @@ qint64 AudioDevice::writeData(const char *data, qint64 len)
 
 void AudioDevice::onDataArrived(const char* data, int size)
 {
-//    QByteArray audioData;
-//    for (int16_t sample : chunk) {
-//        audioData.append(reinterpret_cast<const char*>(&sample), sizeof(sample));
-//    }
-
     QMutexLocker locker(&m_mutex);
     m_buffer.append(data, size);
     locker.unlock();

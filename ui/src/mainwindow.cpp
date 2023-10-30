@@ -40,9 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_sourceAudioPlot = new QCustomPlot(this);
     m_sourceAudioPlot->addGraph();
     m_sourceAudioPlot->graph(0)->setPen(QPen(QColor(0,0,0)));
-//    m_sourceAudioPlot->xAxis->setLabel("Time (s)");
     m_sourceAudioPlot->xAxis->setVisible(false);
-//    m_sourceAudioPlot->yAxis->setLabel("Amplitude");
     m_sourceAudioPlot->yAxis->setVisible(false);
     m_sourceAudioPlot->xAxis->setRange(0, PLOT_SAMPLES);
     m_sourceAudioPlot->yAxis->setRange(-1, 1);
@@ -54,14 +52,11 @@ MainWindow::MainWindow(QWidget *parent)
     m_outputAudioPlot = new QCustomPlot(this);
     m_outputAudioPlot->addGraph();
     m_outputAudioPlot->graph(0)->setPen(QPen(QColor(0,0,0)));
-//    m_outputAudioPlot->xAxis->setLabel("Time (s)");
     m_outputAudioPlot->xAxis->setVisible(false);
-//    m_outputAudioPlot->yAxis->setLabel("Amplitude");
     m_outputAudioPlot->yAxis->setVisible(false);
     m_outputAudioPlot->xAxis->setRange(0, PLOT_SAMPLES);
     m_outputAudioPlot->yAxis->setRange(-1, 1);
     m_outputAudioPlot->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-//    m_outputAudioPlot->setInteractions(QCP::iRangeZoom | QCP::iRangeDrag);
     m_outputAudioPlot->setInteraction(QCP::iRangeZoom, false);
     m_outputAudioPlot->setInteraction(QCP::iRangeDrag, false);
 
@@ -72,9 +67,7 @@ MainWindow::MainWindow(QWidget *parent)
         m_outputAudioDataValues.push_back(0);
     }
     m_sourceAudioDataKeys.resize(PLOT_SAMPLES);
-//    m_sourceAudioDataValues.resize(PLOT_SAMPLES);
     m_outputAudioDataKeys.resize(PLOT_SAMPLES);
-//    m_outputAudioDataValues.resize(PLOT_SAMPLES);
 
     m_sourceAudioPlot->graph()->setData(m_sourceAudioDataKeys, m_sourceAudioDataValues);
     m_outputAudioPlot->graph()->setData(m_outputAudioDataKeys, m_outputAudioDataValues);
@@ -110,23 +103,10 @@ MainWindow::MainWindow(QWidget *parent)
     ui->outputsComboBox->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
     ui->playbacksComboBox->setSizeAdjustPolicy(ui->playbacksComboBox->AdjustToContents);
     ui->playbacksComboBox->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
-//    plot_timer = new QTimer(this);
-//    connect(plot_timer, &QTimer::timeout, this, &MainWindow::updatePlots);
-//    plot_timer->setInterval(50);
-//    plot_timer->start();
 }
 
 MainWindow::~MainWindow()
 {
-//    if(m_controller != nullptr){
-//        delete m_controller;
-//        m_controller = nullptr;
-//    }
-////    delete ui;
-////    delete m_sourceAudioPlot;
-////    delete m_outputAudioPlot;
-//    m_ConvertSwitchButton = nullptr;
-//    m_ActionLabel = nullptr;
 }
 
 void MainWindow::modelInitProgress(float percentage)
@@ -212,8 +192,3 @@ void MainWindow::playButtonClicked()
         m_isPlaying = false;
     }
 }
-
-//void MainWindow::updatePlots(){
-//    updateSourcePlot();
-//    updateOutputPlot();
-//}

@@ -11,7 +11,6 @@ LoadingScreen::LoadingScreen(QWidget *parent) :
 
 LoadingScreen::~LoadingScreen()
 {
-//    delete ui;
 }
 
 void LoadingScreen::init()
